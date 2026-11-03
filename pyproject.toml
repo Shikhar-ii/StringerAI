@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stringerai-wvsu-assistant"
+version = "1.0.0"
+description = "A retrieval-based West Virginia State University information assistant."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["Flask>=3.0,<4.0"]
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["stringerai*"]
+
+[tool.setuptools.package-data]
+stringerai = ["data/*.json", "templates/*.html", "static/*.css", "static/*.js"]

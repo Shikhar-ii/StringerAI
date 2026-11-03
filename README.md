@@ -1,121 +1,120 @@
-# StringerJPT
+# StringerAI: WVSU Assistant
 
-StringerJPT is a local West Virginia State University (WVSU) question-answering chatbot. It combines a Flask API, a browser-based chat interface, and a small curated knowledge base.
+A local, retrieval-based chatbot for West Virginia State University (WVSU). StringerAI pairs a small Flask API with a responsive chat interface and a source-attributed WVSU knowledge base.
 
-## What it does
-You submit a question in the chat UI. The browser sends it to Flask at `/api/chat`; Flask ranks the stored WVSU passages and returns an answer with matching passage titles. The interface displays the conversation and lets you switch between light and dark themes.
+## Project status
+- Product name: **StringerAI: WVSU Assistant**
+- Runtime: Python 3.10+ and Flask
+- Answer method: local TF-IDF-style passage retrieval
+- Model training: none; no external LLM or API key is required
+- Current corpus: 25 passages, approximately 1,021 passage-text words, and 16 distinct source URLs
 
-This project does **not** train or fine-tune an AI model and does not call an external LLM. “Knowledge base” or “retrieval corpus” is more accurate than “training data.”
+The corpus is curated retrieval content, not model-training data. Current counts are measured from `stringerai/data/wvsu_knowledge_base.json` and change when records change. The corpus covers general university information, admissions, costs, housing, academics, the library, and athletics. It is not a complete WVSU directory. Some entries are date-bound or refer to older/third-party information; verify critical details with WVSU.
 
-## Current knowledge-base size
-Measured from the active `wvsu_knowledge_base.json` in this workspace:
+## Quick start
+Requires Python 3.10 or newer.
 
-- 25 retrieval passages
-- 1,021 whitespace-separated words across passage text (approximate size; changes when entries change)
-- 7,267 characters across passage text
-- 25 passages include a source field
-- 16 distinct source URLs
+```bash
+git clone https://github.com/Shikhar-ii/StringerAI.git
+cd StringerAI
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -e .
+python -m stringerai
+```
 
-These are curated text records, not 25 documents or model-training examples. The count describes the current checked-out data and will change as the corpus is edited. Records are grouped as follows:
+Open `http://127.0.0.1:5000`. The local server binds to loopback and runs with Flask debug mode disabled. Stop it with `Ctrl+C`.
 
-| Category | Passages |
-| --- | ---: |
-| General | 9 |
-| Admissions | 2 |
-| Costs | 3 |
-| Housing | 2 |
-| Academics | 2 |
-| Library | 5 |
-| Athletics | 2 |
+Windows PowerShell activation uses `.venv\Scripts\Activate.ps1` instead of `source .venv/bin/activate`.
 
-The knowledge base is a starting point, not comprehensive coverage of every WVSU page, person, department, or policy. Some facts are year-specific or may come from older or third-party references. Confirm time-sensitive information with WVSU.
+## Architecture
+```text
+.
+├── app.py                         # WSGI-compatible entry point
+├── pyproject.toml                 # package metadata and dependencies
+├── stringerai/
+│   ├── __init__.py                # Flask app factory and HTTP routes
+│   ├── __main__.py                # python -m stringerai launcher
+│   ├── retrieval.py               # tokenization, ranking, answer assembly
+│   ├── data/wvsu_knowledge_base.json
+│   ├── templates/index.html       # page structure
+│   └── static/                    # browser behavior and visual theme
+├── tests/                         # API and retrieval unit tests
+└── docs/knowledge-base.md         # human-readable reference notes
+```
 
-## How answering works
-1. `app.py` loads the JSON knowledge base once when the Flask process starts.
-2. The question and each entry's title and text are lowercased, punctuation is removed, common stopwords are filtered, and some trailing plural `s` characters are trimmed.
-3. The app builds TF-IDF-style term vectors. In this implementation, inverse document frequency is calculated as `log(1 + number_of_passages / document_frequency)`.
-4. It calculates cosine similarity between the question vector and each passage vector, keeps scores above `0.05`, and selects at most the three highest-scoring passages.
-5. The answer text joins the text of the top two passages. The response's `sources` list contains the titles of the matched passages (up to three).
-6. The browser renders the response. The backend does not generate new facts or paraphrase with an LLM; the answer is assembled from stored passage text.
+### Request flow
+1. `stringerai.create_app()` loads the canonical JSON corpus once during startup and builds a `KnowledgeBase` index.
+2. The browser sends `{ "question": "..." }` to `POST /api/chat`.
+3. `KnowledgeBase` lowercases and tokenizes the question and passage titles/text, removes stopwords, and applies a simple plural suffix rule.
+4. It computes TF-IDF-style weighted vectors and cosine similarity, discards scores at or below `0.05`, and selects up to three passages.
+5. The API joins the text from the two highest matches and returns their titles in `sources`. No generative model rewrites the response.
+6. The frontend renders the answer and persists the light/dark preference in browser local storage.
 
-There is a specific fallback response for “Dr. Ali” queries. Other questions without a match receive a general no-match response.
+The API also has a specific verified-profile fallback for Dr. Ali questions. Empty or malformed question payloads return HTTP 400; unmatched questions receive a helpful no-match answer.
 
-### What the retrieval system does not do
-- It does not learn from chat messages or retain conversation history.
-- It does not crawl or automatically refresh WVSU pages.
-- It does not create embeddings or use a vector database.
-- It does not currently return clickable source URLs in the chat response; it returns matching passage titles.
-- It does not understand facts that are absent from its loaded JSON corpus.
+### API contract
+Request:
 
-## Add more WVSU knowledge
-The active corpus is the root-level `wvsu_knowledge_base.json`. Add each fact as a focused passage, preferably one subject per entry. Use official WVSU pages first, especially for tuition, deadlines, programs, contacts, and policies. Keep the text self-contained, preserve the exact source URL, and note the relevant academic year in the title or text for changing facts.
+```http
+POST /api/chat
+Content-Type: application/json
 
-Each active record uses this schema:
+{"question":"When was WVSU founded?"}
+```
+
+Response:
+
+```json
+{
+  "answer": "Founded in 1891 ...",
+  "sources": ["Founding and name changes", "Mission"]
+}
+```
+
+`GET /` serves the chat interface. The API returns passage titles, not source URLs, in its current form.
+
+## Manage the knowledge base
+The single active data source is `stringerai/data/wvsu_knowledge_base.json`. The Markdown notes in `docs/knowledge-base.md` are for humans and are not loaded at runtime. There is no crawler, automatic refresh, duplicate merge, embedding index, conversation learning, or chat-history persistence.
+
+Each JSON record has this shape:
 
 ```json
 {
   "id": 26,
   "category": "Admissions",
-  "title": "Example admissions topic",
-  "text": "A concise, factual passage that directly answers likely questions.",
+  "title": "Application deadlines",
+  "text": "A focused, self-contained fact with relevant dates and qualifications.",
   "source": "https://wvstateu.edu/example-page/"
 }
 ```
 
-To add entries:
-1. Open `wvsu_knowledge_base.json` in the repository root.
-2. Add a comma after the previous record, then add a new object before the closing `]`.
-3. Assign a unique integer `id`; use a useful category and specific title.
-4. Write a focused `text` passage containing enough context to make it understandable on its own.
-5. Set `source` to the page or document URL used to verify the fact. Do not invent a URL. For information from a provided document without a public URL, use an accurate document name and location only if the schema or code is later extended to support that; currently `source` is treated as a string.
-6. Save and validate the JSON. Restart Flask so it reloads the corpus, then test questions using the wording people are likely to ask.
-
-Example validation and app run, from the `wvsu-chatbot` directory:
+To add information:
+1. Prefer a current official WVSU page or document; use third-party sources only when clearly labeled and necessary.
+2. Split a long page or handbook into short, independent passages, one subject per record.
+3. Add a unique integer `id`, a stable category, a specific title, factual text, and the exact source URL.
+4. Include dates and qualifications for tuition, deadlines, programs, and policies. Avoid blending facts from different years.
+5. Validate JSON and run the test suite:
 
 ```bash
-python3 -m json.tool ../wvsu_knowledge_base.json > /dev/null
-python3 app.py
+python -m json.tool stringerai/data/wvsu_knowledge_base.json > /dev/null
+python -m unittest discover -s tests -v
 ```
 
-Try the app at `http://localhost:5000`. You can also test the chat endpoint:
+6. Restart the Flask app; data is loaded at process startup. Ask realistic questions and confirm the answer and `sources` are relevant.
+
+The matcher relies on keyword overlap, so a useful title and wording that includes likely query terms materially improve retrieval. It does not read PDFs, scrape pages, or accept arbitrary documents automatically; extract and fact-check passages before adding them.
+
+## Development and tests
+Run the app in development with `python -m stringerai`. Run tests with:
 
 ```bash
-curl -X POST http://localhost:5000/api/chat \
-  -H 'Content-Type: application/json' \
-  -d '{"question":"What are the undergraduate tuition costs?"}'
+python -m unittest discover -s tests -v
 ```
 
-After adding data, verify that the answer is relevant, its passage title appears in `sources`, and old questions still work. If the record is not retrieved, revise the title/text to include the key terms in the question. This implementation uses simple token overlap and is sensitive to wording.
+GitHub Actions runs the same test suite on pushes and pull requests. The package can also be hosted by a WSGI server using `stringerai:app`; configure the platform's bind address and worker settings there rather than enabling Flask debug mode.
 
-### Adding larger source collections
-For a long webpage, handbook, or PDF, do not paste an entire document into one entry. Extract the relevant factual sections and split them into concise, independently useful passages. Keep a source reference for every passage. Review dates, fees, deadlines, and policies before adding them. This repository does not currently provide document parsing, web scraping, automatic synchronization, or duplicate detection; those capabilities would require additional implementation.
+## Data quality
+The corpus currently spans 7 categories: General (9), Admissions (2), Costs (3), Housing (2), Academics (2), Library (5), and Athletics (2). All 25 entries have a source field, with 16 distinct URLs. These figures describe records currently checked into this repository; they are not a claim that the assistant has trained on or indexed every WVSU source.
 
-### Which knowledge file is active?
-At startup, `app.py` prefers the root file `wvsu_knowledge_base.json`. Only if that file does not exist does it load `wvsu-chatbot/data/wvsu_kb.json` as a fallback. The root file currently has 25 records; the fallback has 26 records with a simpler `title`/`text` schema. The two files are not combined, and their record counts must not be added together. The Markdown file `wvsu_knowledge_base.md` is reference documentation and is not loaded by the application.
-
-Add new material to the root JSON file to change the data the running app uses. If you intentionally remove or rename the root file, check that the fallback data has the content and fields you want before starting the app.
-
-## Run locally
-Requirements: Python 3 and the packages in `wvsu-chatbot/requirements.txt`.
-
-```bash
-cd wvsu-chatbot
-python3 -m pip install -r requirements.txt
-python3 app.py
-```
-
-Open `http://localhost:5000`. To stop the server, press `Ctrl+C` in its terminal. Flask runs in debug mode as configured in `app.py`; use an appropriate production server and deployment configuration before exposing this prototype publicly.
-
-## Project files
-- `wvsu-chatbot/app.py`: Flask routes, knowledge-base loading, tokenization, TF-IDF-style ranking, and response assembly.
-- `wvsu-chatbot/templates/index.html`: chat page structure and existing UI controls.
-- `wvsu-chatbot/static/styles.css`: layout, responsive styling, and light/dark theme colors.
-- `wvsu-chatbot/static/app.js`: browser-side chat submission, message rendering, quick prompts, and theme persistence.
-- `wvsu_knowledge_base.json`: active runtime data, including categories and source URLs.
-- `wvsu-chatbot/data/wvsu_kb.json`: fallback corpus used only when the root JSON file is absent.
-- `wvsu_knowledge_base.md`: human-readable reference material; not loaded at runtime.
-- `wvsu-chatbot/requirements.txt`: Python dependencies (Flask).
-- `wvsu-chatbot/README.md`: app-folder setup notes and link to this guide.
-
-## Data quality and responsible use
-Prefer current primary sources and include the exact URL for each fact. Separate facts with different dates or qualifications into clear passages so retrieval does not combine incompatible details. Review the corpus periodically, especially costs, deadlines, program offerings, staff directories, and policies. Do not treat generated-looking answers as official advice; verify important decisions with WVSU.
+Review high-impact and time-sensitive details regularly. For enrollment, financial, housing, deadline, and policy decisions, use the linked official WVSU source as the authority.

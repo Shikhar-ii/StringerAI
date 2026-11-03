@@ -6,7 +6,7 @@ const themeToggle = document.getElementById('themeToggle');
 
 function applyTheme(theme) {
   document.body.setAttribute('data-theme', theme);
-  localStorage.setItem('stringerjpt-theme', theme);
+  localStorage.setItem('stringerai-theme', theme);
 
   if (theme === 'dark') {
     themeToggle.querySelector('.toggle-label').textContent = 'Light mode';
@@ -16,7 +16,7 @@ function applyTheme(theme) {
 }
 
 function initTheme() {
-  const stored = localStorage.getItem('stringerjpt-theme');
+  const stored = localStorage.getItem('stringerai-theme');
   const preferred = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   applyTheme(stored || preferred);
 }
@@ -49,7 +49,7 @@ function addMessage(role, text, sources = []) {
 function renderWelcome() {
   addMessage(
     'bot',
-    'Hi! I’m StringerJPT, your WVSU assistant. Ask me about admissions, tuition, history, academics, athletics, or campus life.'
+    'Hi! I’m StringerAI, your WVSU assistant. Ask me about admissions, tuition, history, academics, athletics, or campus life.'
   );
 }
 

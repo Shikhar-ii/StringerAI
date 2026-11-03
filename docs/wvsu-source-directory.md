@@ -20,6 +20,7 @@ This directory organizes the official WVSU pages provided for expanding Stringer
 - [Accreditation](https://wvstateu.edu/academics/accreditation/)
 - [General education](https://wvstateu.edu/academics/general-education/)
 - [Academic internship programs](https://wvstateu.edu/academics/academic-internship-programs/)
+- [Mathematics and Computer Science department directory](https://wvstateu.edu/college-of-business-sciences-and-technology/departments/mathematics-and-computer-science/)
 
 ## Colleges
 - [College of Arts, Humanities, and Public Affairs](https://wvstateu.edu/college-of-arts-humanities-and-public-affairs/)

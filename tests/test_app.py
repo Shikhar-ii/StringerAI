@@ -44,6 +44,17 @@ class ChatApiTests(unittest.TestCase):
         self.assertIn("CyberHive", payload["answer"])
         self.assertIn("CIC hands-on cybersecurity labs", payload["sources"])
 
+    def test_kail_question_returns_verified_contact_and_attributed_note(self):
+        response = self.client.post(
+            "/api/chat", json={"question": "Who is Ms. Kail?"}
+        )
+        payload = response.get_json()
+        self.assertIn("Instructor in Mathematics and Computer Science", payload["answer"])
+        self.assertIn("kkail@wvstateu.edu", payload["answer"])
+        self.assertIn("304-766-4135", payload["answer"])
+        self.assertIn("not an official WVSU statement", payload["answer"])
+        self.assertIn("Ms. Karen Kail faculty listing", payload["sources"])
+
     def test_empty_question_returns_bad_request(self):
         response = self.client.post("/api/chat", json={"question": "   "})
         self.assertEqual(response.status_code, 400)

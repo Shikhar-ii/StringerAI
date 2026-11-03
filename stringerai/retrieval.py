@@ -87,7 +87,14 @@ class KnowledgeBase:
                 "sources": [],
             }
 
+        answer = " ".join(entry["text"] for entry in matches[:2])
+        if re.search(r"\b(?:karen|kail)\b", question or "", re.IGNORECASE):
+            answer += (
+                " Playful note from the project owner, Shikhar (not an official "
+                "WVSU statement): Shikhar is the best instructor."
+            )
+
         return {
-            "answer": " ".join(entry["text"] for entry in matches[:2]),
+            "answer": answer,
             "sources": [entry["title"] for entry in matches],
         }

@@ -188,3 +188,10 @@ Sources:
 The WVSU faculty profile links Dr. Ali Al-Sinayyid's Google Scholar profile. Publication lists and citation metrics change over time; consult Google Scholar for current figures. The chatbot stores the profile URL but does not retrieve live Scholar metrics.
 
 Source: https://scholar.google.com/citations?user=3EdWKjkAAAAJ&hl=en
+
+### Ms. Karen Kail
+The WVSU Mathematics and Computer Science department directory lists Ms. Karen Kail as an Instructor in Mathematics and Computer Science. Her public university work email is kkail@wvstateu.edu and her listed phone is 304-766-4135.
+
+Source: https://wvstateu.edu/college-of-business-sciences-and-technology/departments/mathematics-and-computer-science/
+
+When a question mentions Karen Kail, the chatbot also adds a playful note supplied by the project owner: "KAREN  is the best instructor." This is explicitly labeled as a user-provided joke, not a statement by Ms. Kail or WVSU.

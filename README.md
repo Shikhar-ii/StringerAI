@@ -7,7 +7,7 @@ A local, retrieval-based chatbot for West Virginia State University (WVSU). Stri
 - Runtime: Python 3.10+ and Flask
 - Answer method: local TF-IDF-style passage retrieval
 - Model training: none; no external LLM or API key is required
-- Current corpus: 32 passages, approximately 1,506 passage-text words, and 19 distinct source URLs
+- Current corpus: 33 passages, approximately 1,538 passage-text words, and 20 distinct source URLs
 
 The corpus is curated retrieval content, not model-training data. Current counts are measured from `stringerai/data/wvsu_knowledge_base.json` and change when records change. It covers general university information, admissions, costs, housing, academics, the library, athletics, the Cybersecurity Innovation Center (CIC), and cybersecurity research. It is not a complete WVSU directory. Some entries are date-bound or refer to older/third-party information; verify critical details with WVSU.
 
@@ -42,7 +42,7 @@ Windows PowerShell activation uses `.venv\Scripts\Activate.ps1` instead of `sour
 ├── tests/                         # API and retrieval unit tests
 └── docs/
   ├── knowledge-base.md          # human-readable reference notes
-  └── wvsu-source-directory.md   # 113 official pages grouped by topic
+  └── wvsu-source-directory.md   # 114 official pages grouped by topic
 ```
 
 ### Request flow
@@ -77,7 +77,7 @@ Response:
 `GET /` serves the chat interface. The API returns passage titles, not source URLs, in its current form.
 
 ## Manage the knowledge base
-The single active data source is `stringerai/data/wvsu_knowledge_base.json`. The Markdown notes in `docs/knowledge-base.md` and the categorized [WVSU source directory](docs/wvsu-source-directory.md) are for humans and are not loaded at runtime. The directory catalogs 113 unique official WVSU pages supplied for future expansion; listing a URL does not mean its contents are indexed. There is no crawler, automatic refresh, duplicate merge, embedding index, conversation learning, or chat-history persistence.
+The single active data source is `stringerai/data/wvsu_knowledge_base.json`. The Markdown notes in `docs/knowledge-base.md` and the categorized [WVSU source directory](docs/wvsu-source-directory.md) are for humans and are not loaded at runtime. The directory catalogs 114 unique official WVSU pages supplied for future expansion; listing a URL does not mean its contents are indexed. There is no crawler, automatic refresh, duplicate merge, embedding index, conversation learning, or chat-history persistence.
 
 Each JSON record has this shape:
 
@@ -117,7 +117,7 @@ python -m unittest discover -s tests -v
 GitHub Actions runs the same test suite on pushes and pull requests. The package can also be hosted by a WSGI server using `stringerai:app`; configure the platform's bind address and worker settings there rather than enabling Flask debug mode.
 
 ## Data quality
-The corpus currently spans 10 categories: General (9), Admissions (2), Costs (3), Housing (2), Academics (3), Library (5), Athletics (2), Centers (1), Faculty (1), and Research (4). All 32 entries have a source field, with 19 distinct URLs. These figures describe records currently checked into this repository; they are not a claim that the assistant has trained on or indexed every WVSU source.
+The corpus currently spans 10 categories: General (9), Admissions (2), Costs (3), Housing (2), Academics (3), Library (5), Athletics (2), Centers (1), Faculty (2), and Research (4). All 33 entries have a source field, with 20 distinct URLs. These figures describe records currently checked into this repository; they are not a claim that the assistant has trained on or indexed every WVSU source.
 
 Review high-impact and time-sensitive details regularly. For enrollment, financial, housing, deadline, and policy decisions, use the linked official WVSU source as the authority.
 

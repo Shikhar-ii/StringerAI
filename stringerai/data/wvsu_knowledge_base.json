@@ -222,5 +222,12 @@
     "title": "Dr. Ali Al-Sinayyid Google Scholar profile",
     "text": "The WVSU faculty profile links Dr. Ali Al-Sinayyid's Google Scholar profile. The profile's publication list and citation metrics change over time; consult Google Scholar directly for current counts. StringerAI stores the profile link but does not fetch live Scholar metrics.",
     "source": "https://scholar.google.com/citations?user=3EdWKjkAAAAJ&hl=en"
+  },
+  {
+    "id": 33,
+    "category": "Faculty",
+    "title": "Ms. Karen Kail faculty listing",
+    "text": "Ms. Karen Kail is an Instructor in Mathematics and Computer Science at West Virginia State University. The university department directory lists her work email as kkail@wvstateu.edu and her office phone as 304-766-4135.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/departments/mathematics-and-computer-science/"
   }
 ]

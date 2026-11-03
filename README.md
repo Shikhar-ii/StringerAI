@@ -7,9 +7,9 @@ A local, retrieval-based chatbot for West Virginia State University (WVSU). Stri
 - Runtime: Python 3.10+ and Flask
 - Answer method: local TF-IDF-style passage retrieval
 - Model training: none; no external LLM or API key is required
-- Current corpus: 25 passages, approximately 1,021 passage-text words, and 16 distinct source URLs
+- Current corpus: 32 passages, approximately 1,506 passage-text words, and 19 distinct source URLs
 
-The corpus is curated retrieval content, not model-training data. Current counts are measured from `stringerai/data/wvsu_knowledge_base.json` and change when records change. The corpus covers general university information, admissions, costs, housing, academics, the library, and athletics. It is not a complete WVSU directory. Some entries are date-bound or refer to older/third-party information; verify critical details with WVSU.
+The corpus is curated retrieval content, not model-training data. Current counts are measured from `stringerai/data/wvsu_knowledge_base.json` and change when records change. It covers general university information, admissions, costs, housing, academics, the library, athletics, the Cybersecurity Innovation Center (CIC), and cybersecurity research. It is not a complete WVSU directory. Some entries are date-bound or refer to older/third-party information; verify critical details with WVSU.
 
 ## Quick start
 Requires Python 3.10 or newer.
@@ -51,7 +51,7 @@ Windows PowerShell activation uses `.venv\Scripts\Activate.ps1` instead of `sour
 5. The API joins the text from the two highest matches and returns their titles in `sources`. No generative model rewrites the response.
 6. The frontend renders the answer and persists the light/dark preference in browser local storage.
 
-The API also has a specific verified-profile fallback for Dr. Ali questions. Empty or malformed question payloads return HTTP 400; unmatched questions receive a helpful no-match answer.
+The corpus includes a WVSU-verified profile for Dr. Ali Al-Sinayyid, so faculty questions are answered through normal retrieval. Empty or malformed question payloads return HTTP 400; unmatched questions receive a helpful no-match answer.
 
 ### API contract
 Request:
@@ -115,6 +115,26 @@ python -m unittest discover -s tests -v
 GitHub Actions runs the same test suite on pushes and pull requests. The package can also be hosted by a WSGI server using `stringerai:app`; configure the platform's bind address and worker settings there rather than enabling Flask debug mode.
 
 ## Data quality
-The corpus currently spans 7 categories: General (9), Admissions (2), Costs (3), Housing (2), Academics (2), Library (5), and Athletics (2). All 25 entries have a source field, with 16 distinct URLs. These figures describe records currently checked into this repository; they are not a claim that the assistant has trained on or indexed every WVSU source.
+The corpus currently spans 10 categories: General (9), Admissions (2), Costs (3), Housing (2), Academics (3), Library (5), Athletics (2), Centers (1), Faculty (1), and Research (4). All 32 entries have a source field, with 19 distinct URLs. These figures describe records currently checked into this repository; they are not a claim that the assistant has trained on or indexed every WVSU source.
 
 Review high-impact and time-sensitive details regularly. For enrollment, financial, housing, deadline, and policy decisions, use the linked official WVSU source as the authority.
+
+## Run in VS Code anytime
+1. In VS Code, choose **File → Open Folder...** and open the `StringerAI` repository folder.
+2. The first time only, open **Terminal → New Terminal** and create/install the project environment:
+
+  ```bash
+  python3 -m venv .venv
+  source .venv/bin/activate
+  python -m pip install -e .
+  ```
+
+  In Windows PowerShell, activate with `.venv\Scripts\Activate.ps1` instead of the `source` command.
+3. In VS Code, run **Python: Select Interpreter** from the Command Palette and choose the interpreter inside `.venv`.
+4. Whenever you want to run the chatbot, open a new integrated terminal, activate `.venv` if it is not already active, and run:
+
+  ```bash
+  python -m stringerai
+  ```
+
+5. Open `http://127.0.0.1:5000` in your browser. Leave the terminal running while you use the app; press `Ctrl+C` there to stop it.

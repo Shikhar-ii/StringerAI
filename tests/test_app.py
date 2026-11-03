@@ -28,6 +28,22 @@ class ChatApiTests(unittest.TestCase):
         self.assertIn("1891", payload["answer"])
         self.assertIn("Founding and name changes", payload["sources"])
 
+    def test_dr_ali_question_returns_verified_faculty_details(self):
+        response = self.client.post(
+            "/api/chat", json={"question": "Who is Dr. Ali Al-Sinayyid?"}
+        )
+        payload = response.get_json()
+        self.assertIn("Assistant Professor of Computer Science", payload["answer"])
+        self.assertIn("Dr. Ali Al-Sinayyid profile", payload["sources"])
+
+    def test_cic_question_returns_lab_details(self):
+        response = self.client.post(
+            "/api/chat", json={"question": "What hands-on labs are at the CIC?"}
+        )
+        payload = response.get_json()
+        self.assertIn("CyberHive", payload["answer"])
+        self.assertIn("CIC hands-on cybersecurity labs", payload["sources"])
+
     def test_empty_question_returns_bad_request(self):
         response = self.client.post("/api/chat", json={"question": "   "})
         self.assertEqual(response.status_code, 400)

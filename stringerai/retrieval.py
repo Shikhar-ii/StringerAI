@@ -76,18 +76,6 @@ class KnowledgeBase:
         return [self.entries[index] for index, _ in scored[:limit]]
 
     def build_answer(self, question):
-        normalized = (question or "").lower()
-        if "dr ali" in normalized or "dr. ali" in normalized or "doctor ali" in normalized:
-            return {
-                "answer": (
-                    "I could not find a verified WVSU profile for Dr. Ali in the official "
-                    "WVSU sources included in this project. If you mean a faculty member, "
-                    "administrator, or student with that name, send the full name, title, "
-                    "or department and I can add the exact profile."
-                ),
-                "sources": ["WVSU official records and directory"],
-            }
-
         matches = self.retrieve(question)
         if not matches:
             return {

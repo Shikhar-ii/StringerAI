@@ -147,3 +147,42 @@ Source: https://wvstateu.edu/about/administration/institutional-research/wvsu-qu
 The mascot is a Yellow Jacket named Stinger. Fans call themselves the Yellow Jacket Nation.
 
 Source: https://wvstateu.edu/about/administration/institutional-research/wvsu-quick-facts.aspx
+
+
+## Cybersecurity Innovation Center and Faculty
+
+### Cybersecurity Innovation Center
+The WVSU Cybersecurity Innovation Center (CIC) advances cybersecurity education, applied research, and real-world innovation through hands-on labs, collaborative projects, and student-centered learning. It emphasizes critical-infrastructure protection, including agriculture and other essential sectors, and connects education, workforce development, research, community engagement, and industry.
+
+Source: https://wvstateu.edu/college-of-business-sciences-and-technology/cic/
+
+### Dr. Ali Al-Sinayyid
+Dr. Ali Al-Sinayyid is an Assistant Professor of Computer Science and Director of the WVSU Cybersecurity Innovation Center. He holds a Ph.D. in Computer Science from Southern Illinois University Carbondale and has more than 17 years of combined academic and industry experience. His work includes critical-infrastructure cybersecurity, operational technology and industrial control systems (OT/ICS/SCADA), CyberAI, Internet of Things security, cybersecurity education, workforce development, and applied research.
+
+Source: https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/
+
+### Cybersecurity degree and Google Cybersecurity Clinic
+WVSU's four-year Bachelor of Science in Cybersecurity was approved in 2025 and offers General Cybersecurity and Agricultural Cybersecurity options. The faculty profile identifies WVSU as the only university in West Virginia offering the Agricultural Cybersecurity option. Dr. Al-Sinayyid led development of the degree and directs the WVSU Google Cybersecurity Clinic. The profile lists a $1 million Google.org-supported clinic grant; the clinic opened in March 2025 as the first cybersecurity clinic of its type in West Virginia and provides no-cost cybersecurity support while giving students applied experience.
+
+Source: https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/
+
+### CIC hands-on labs
+- CyberHive provides physical SCADA, PLC, and HMI environments for training in monitoring, attacking, and defending industrial systems such as chemical and water treatment plants.
+- KITE is a portable, modular industrial-control training platform using real components.
+- Robotics and Autonomous Systems activities cover AI/ML, computer vision, and autonomous robotics.
+- CyberCity is a smart-city cyber-physical testbed spanning agriculture, transportation, energy, water, and IoT-enabled buildings.
+- HoneyNet is a controlled honeypot environment used to study real-world attack behavior and threat intelligence.
+
+Source: https://wvstateu.edu/college-of-business-sciences-and-technology/cic/
+
+### Research and selected grants
+CIC research connects cybersecurity, AI, computer science, IoT, cloud computing, OT/ICS, and critical infrastructure. Topics highlighted by the center include IoT attack detection, DDoS defense, SQL injection detection, SCADA/ICS security, phishing detection, and intrusion detection. The WVSU faculty profile lists selected awards including a $1,000,000 Google Cybersecurity Clinics Fund grant, a $749,973 U.S. Department of Energy and Marshall University critical-infrastructure project, a $500,000 CIC expansion partnership, and a $764,792 Kanawha County Commission grant supporting the CIC. These are selected page-listed awards, not a complete or independently audited funding total. Publication totals vary between page snapshots; check the current source for updated lists and counts.
+
+Sources:
+- https://wvstateu.edu/college-of-business-sciences-and-technology/cic/
+- https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/
+
+### Google Scholar profile
+The WVSU faculty profile links Dr. Ali Al-Sinayyid's Google Scholar profile. Publication lists and citation metrics change over time; consult Google Scholar for current figures. The chatbot stores the profile URL but does not retrieve live Scholar metrics.
+
+Source: https://scholar.google.com/citations?user=3EdWKjkAAAAJ&hl=en

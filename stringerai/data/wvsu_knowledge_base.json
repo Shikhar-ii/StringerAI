@@ -173,5 +173,54 @@
     "title": "Mascot",
     "text": "The mascot is a Yellow Jacket named Stinger. Fans call themselves the Yellow Jacket Nation.",
     "source": "https://wvstateu.edu/about/administration/institutional-research/wvsu-quick-facts.aspx"
+  },
+  {
+    "id": 26,
+    "category": "Centers",
+    "title": "Cybersecurity Innovation Center (CIC)",
+    "text": "The Cybersecurity Innovation Center at West Virginia State University advances cybersecurity education, applied research, and real-world innovation through hands-on labs, collaborative projects, and student-centered learning. Its work emphasizes critical-infrastructure protection, including agriculture and other essential sectors, and connects education, workforce development, research, community engagement, and industry.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/cic/"
+  },
+  {
+    "id": 27,
+    "category": "Faculty",
+    "title": "Dr. Ali Al-Sinayyid profile",
+    "text": "Dr. Ali Al-Sinayyid is an Assistant Professor of Computer Science and Director of the Cybersecurity Innovation Center (CIC) at WVSU. He holds a Ph.D. in Computer Science from Southern Illinois University Carbondale and has more than 17 years of combined academic and industry experience. His work includes critical-infrastructure cybersecurity, operational technology and industrial control systems (OT/ICS/SCADA), CyberAI, Internet of Things security, cybersecurity education, workforce development, and applied research.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/"
+  },
+  {
+    "id": 28,
+    "category": "Academics",
+    "title": "Cybersecurity degree and Google Cybersecurity Clinic",
+    "text": "WVSU's four-year Bachelor of Science in Cybersecurity was approved in 2025 and offers General Cybersecurity and Agricultural Cybersecurity options. WVSU's faculty profile identifies it as the only university in West Virginia offering the Agricultural Cybersecurity option. Dr. Ali Al-Sinayyid led development of the degree and directs the WVSU Google Cybersecurity Clinic. His profile lists a $1 million Google.org-supported clinic grant; the clinic opened in March 2025 as the first cybersecurity clinic of its type in West Virginia and provides no-cost cybersecurity support while giving students applied experience.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/"
+  },
+  {
+    "id": 29,
+    "category": "Research",
+    "title": "CIC hands-on cybersecurity labs",
+    "text": "The CIC describes several hands-on labs: CyberHive uses physical SCADA, PLC, and HMI environments to train students to monitor, attack, and defend industrial systems such as chemical and water treatment plants. KITE is a portable modular industrial-control training platform built with real components. The Robotics and Autonomous Systems lab covers AI/ML, computer vision, and autonomous robotics. CyberCity is a smart-city cyber-physical testbed spanning agriculture, transportation, energy, water, and IoT-enabled buildings. HoneyNet is a controlled honeypot environment for studying real-world attack behavior and threat intelligence.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/cic/"
+  },
+  {
+    "id": 30,
+    "category": "Research",
+    "title": "CIC research and publication topics",
+    "text": "CIC research connects cybersecurity, artificial intelligence, computer science, IoT, cloud computing, operational technology, industrial control systems, and critical infrastructure. Research topics highlighted by the center include machine-learning methods for IoT attack detection, DDoS defense in cloud computing, time-based blind SQL injection detection, blockchain security for SCADA/ICS, phishing detection, intrusion detection for advanced persistent threats, and code-injection defense. Publication totals can differ between WVSU page snapshots, so consult the current CIC page for its latest list rather than relying on a fixed count.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/cic/"
+  },
+  {
+    "id": 31,
+    "category": "Research",
+    "title": "Selected cybersecurity grants led by Dr. Ali Al-Sinayyid",
+    "text": "The WVSU faculty profile lists selected projects including a $1,000,000 Google Cybersecurity Clinics Fund award (Principal Investigator, 2024-2030); a $749,973 U.S. Department of Energy and Marshall University critical-infrastructure center grant (Co-Principal Investigator, 2022-2026); a $500,000 Marshall University partnership for CIC expansion (Co-Principal Investigator, 2023-2026); a $764,792 Kanawha County Commission grant supporting the CIC (Co-Principal Investigator, 2022); and a $349,681 CISE-MSI research award (Co-Principal Investigator, 2023-2025). These are selected profile-listed awards, not a complete or independently audited funding total.",
+    "source": "https://wvstateu.edu/college-of-business-sciences-and-technology/author/ali-alsinayyid/"
+  },
+  {
+    "id": 32,
+    "category": "Research",
+    "title": "Dr. Ali Al-Sinayyid Google Scholar profile",
+    "text": "The WVSU faculty profile links Dr. Ali Al-Sinayyid's Google Scholar profile. The profile's publication list and citation metrics change over time; consult Google Scholar directly for current counts. StringerAI stores the profile link but does not fetch live Scholar metrics.",
+    "source": "https://scholar.google.com/citations?user=3EdWKjkAAAAJ&hl=en"
   }
 ]

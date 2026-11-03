@@ -28,10 +28,19 @@ class KnowledgeBaseTests(unittest.TestCase):
     def test_returns_empty_for_a_query_with_no_shared_terms(self):
         self.assertEqual(self.knowledge_base.retrieve("xylophone"), [])
 
-    def test_dr_ali_query_uses_the_verified_profile_fallback(self):
-        answer = self.knowledge_base.build_answer("Who is Dr. Ali?")
-        self.assertIn("could not find a verified WVSU profile", answer["answer"])
-        self.assertEqual(answer["sources"], ["WVSU official records and directory"])
+    def test_dr_ali_query_returns_the_verified_wvsu_profile(self):
+        knowledge_base = KnowledgeBase([
+            {
+                "title": "Dr. Ali Al-Sinayyid profile",
+                "text": (
+                    "Dr. Ali Al-Sinayyid is an Assistant Professor of Computer Science "
+                    "and Director of the Cybersecurity Innovation Center."
+                ),
+            }
+        ])
+        answer = knowledge_base.build_answer("Who is Dr. Ali Al-Sinayyid?")
+        self.assertIn("Assistant Professor", answer["answer"])
+        self.assertEqual(answer["sources"], ["Dr. Ali Al-Sinayyid profile"])
 
 
 if __name__ == "__main__":

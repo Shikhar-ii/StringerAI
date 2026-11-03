@@ -1,0 +1,2 @@
+# StringerAI
+WVSU OWN LLM INSPIRED BY RAG

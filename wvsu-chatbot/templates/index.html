@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>StringerJPT | WVSU Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}" />
+  </head>
+  <body data-theme="light">
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-block">
+          <div class="brand-mark">S</div>
+          <div>
+            <div class="brand-name">StringerJPT</div>
+            <div class="brand-subtitle">WVSU AI</div>
+          </div>
+        </div>
+
+        <nav class="nav">
+          <button class="nav-item active" type="button">WVSU Q&A</button>
+          <button class="nav-item" type="button">Admissions</button>
+          <button class="nav-item" type="button">Campus Life</button>
+          <button class="nav-item" type="button">Academics</button>
+        </nav>
+
+        <button id="themeToggle" class="theme-toggle" type="button" aria-label="Toggle theme">
+          <span class="toggle-label">Dark mode</span>
+        </button>
+      </aside>
+
+      <main class="main-panel">
+        <header class="chat-header">
+          <div>
+            <p class="eyebrow">West Virginia State University</p>
+            <h1>StringerJPT</h1>
+          </div>
+        </header>
+
+        <section class="chat-card">
+          <div id="chat" class="chat" aria-live="polite"></div>
+
+          <div class="quick-prompts" id="quickPrompts">
+            <button type="button" class="prompt-btn" data-question="When was WVSU founded?">When was WVSU founded?</button>
+            <button type="button" class="prompt-btn" data-question="What majors does WVSU offer?">What majors does WVSU offer?</button>
+            <button type="button" class="prompt-btn" data-question="How much is tuition?">How much is tuition?</button>
+            <button type="button" class="prompt-btn" data-question="Where is the campus located?">Where is the campus located?</button>
+          </div>
+        </section>
+
+        <form class="composer" id="chatForm">
+          <input id="question" type="text" placeholder="Ask about WVSU..." autocomplete="off" />
+          <button type="submit">Send</button>
+        </form>
+      </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

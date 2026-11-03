@@ -40,7 +40,9 @@ Windows PowerShell activation uses `.venv\Scripts\Activate.ps1` instead of `sour
 │   ├── templates/index.html       # page structure
 │   └── static/                    # browser behavior and visual theme
 ├── tests/                         # API and retrieval unit tests
-└── docs/knowledge-base.md         # human-readable reference notes
+└── docs/
+  ├── knowledge-base.md          # human-readable reference notes
+  └── wvsu-source-directory.md   # 113 official pages grouped by topic
 ```
 
 ### Request flow
@@ -75,7 +77,7 @@ Response:
 `GET /` serves the chat interface. The API returns passage titles, not source URLs, in its current form.
 
 ## Manage the knowledge base
-The single active data source is `stringerai/data/wvsu_knowledge_base.json`. The Markdown notes in `docs/knowledge-base.md` are for humans and are not loaded at runtime. There is no crawler, automatic refresh, duplicate merge, embedding index, conversation learning, or chat-history persistence.
+The single active data source is `stringerai/data/wvsu_knowledge_base.json`. The Markdown notes in `docs/knowledge-base.md` and the categorized [WVSU source directory](docs/wvsu-source-directory.md) are for humans and are not loaded at runtime. The directory catalogs 113 unique official WVSU pages supplied for future expansion; listing a URL does not mean its contents are indexed. There is no crawler, automatic refresh, duplicate merge, embedding index, conversation learning, or chat-history persistence.
 
 Each JSON record has this shape:
 

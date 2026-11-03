@@ -2,6 +2,8 @@
 
 _Compiled Nov 2, 2026 from wvstateu.edu pages and third-party sites. Figures change; verify on the official site._
 
+For additional official WVSU pages grouped by topic, see the [WVSU source directory](wvsu-source-directory.md). Listing a page there does not automatically add its content to the chatbot; the runtime corpus is maintained separately in `stringerai/data/wvsu_knowledge_base.json`.
+
 
 ## General
 

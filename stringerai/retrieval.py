@@ -91,7 +91,7 @@ class KnowledgeBase:
         if re.search(r"\b(?:karen|kail)\b", question or "", re.IGNORECASE):
             answer += (
                 " Playful note from the project owner, Shikhar (not an official "
-                "WVSU statement): Shikhar is the best instructor."
+                "WVSU statement): Karen is the best professor."
             )
 
         return {

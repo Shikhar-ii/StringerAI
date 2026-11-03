@@ -52,6 +52,7 @@ class ChatApiTests(unittest.TestCase):
         self.assertIn("Instructor in Mathematics and Computer Science", payload["answer"])
         self.assertIn("kkail@wvstateu.edu", payload["answer"])
         self.assertIn("304-766-4135", payload["answer"])
+        self.assertIn("Karen is the best professor", payload["answer"])
         self.assertIn("not an official WVSU statement", payload["answer"])
         self.assertIn("Ms. Karen Kail faculty listing", payload["sources"])
 

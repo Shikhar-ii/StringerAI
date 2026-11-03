@@ -194,4 +194,4 @@ The WVSU Mathematics and Computer Science department directory lists Ms. Karen K
 
 Source: https://wvstateu.edu/college-of-business-sciences-and-technology/departments/mathematics-and-computer-science/
 
-When a question mentions Karen Kail, the chatbot also adds a playful note supplied by the project owner: "KAREN  is the best instructor." This is explicitly labeled as a user-provided joke, not a statement by Ms. Kail or WVSU.
+When a question mentions Karen or Kail, the chatbot also adds a playful note supplied by the project owner: "Karen is the best professor." This is explicitly labeled as a user-provided opinion, not a statement by Ms. Kail or WVSU.
